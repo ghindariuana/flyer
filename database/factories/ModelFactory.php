@@ -22,9 +22,12 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
 
 $factory->define(App\Flyer::class, function (Faker\Generator $faker) {
     return [
-        'name' => $faker->name,
-        'email' => $faker->safeEmail,
-        'password' => bcrypt(str_random(10)),
-        'remember_token' => str_random(10),
+        'street'    => $faker->streetAddress,
+        'city'      => $faker->city,
+        'zip'       => $faker->postcode,
+        'state'     => $faker->state,
+        'country'   => $faker->city,
+        'price'     => $faker->numberBetween(10000, 50000000),
+        'description' => $faker->paragraphs(3, true),
     ];
 });
