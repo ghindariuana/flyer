@@ -27,19 +27,28 @@ class FlyersController extends Controller
     public function create()
     {
         //
+        #flash('Hello World!', 'How are you??');
+        flash()->overlay('Hello', 'world!!', 'error');
         return view('create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request\FlyerRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Requests\FlyerRequest $request)
     {
-        //
-        die('aici');
+        // after validation
+        \App\Flyer::create($request->all());
+
+        //session()->flash('flash message', 'flyer created succcsfully created');
+        flash('Bravo', 'Flyer successfuly created');
+        // flash messge
+        return redirect()->back();
+        die('bici');
+
     }
 
     /**

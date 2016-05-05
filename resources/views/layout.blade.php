@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Flayer</title>
     <link rel="stylesheet" href="/css/app.css">
+    <link rel="stylesheet" href="/css/libs.css">
 </head>
 <body>
     <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -29,4 +30,7 @@
         @yield('content')
     </div>
 </body>
+<script src="/js/libs.js"></script>
+@include('flash')
+
 </html>
