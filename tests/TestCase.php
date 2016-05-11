@@ -7,9 +7,10 @@ class TestCase extends Illuminate\Foundation\Testing\TestCase
      *
      * @var string
      */
-    protected $baseUrl = 'http://localhost';
+    protected $baseUrl = 'http://flyer';
 
     /**
+     *
      * Creates the application.
      *
      * @return \Illuminate\Foundation\Application

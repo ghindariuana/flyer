@@ -4,16 +4,14 @@ use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 
-class ExampleTest extends TestCase
+class FlyersControllerTest extends TestCase
 {
     /**
-     * A basic functional test example.
-     *
-     * @return void
+     *@test
      */
-    public function testBasicExample()
+    public function it_show_the_form_to_create_new_flyer()
     {
-        $this->visit('/')
-             ->see('Laravel 5');
+        $this->visit('/flyers/create');
+
     }
 }

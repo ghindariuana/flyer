@@ -5,9 +5,12 @@
     <title>Flayer</title>
     <link rel="stylesheet" href="/css/app.css">
     <link rel="stylesheet" href="/css/libs.css">
+    @yield('style')
+
+
 </head>
 <body>
-    <nav class="navbar navbar-inverse navbar-fixed-top">
+    <nav class="navbar navbar-default navbar-fixed-top col-xs-11">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
             <span class="sr-only">Toggle navigation</span>
@@ -22,6 +25,15 @@
             <li><a href="#about">About</a></li>
             <li><a href="#contact">Contact</a></li>
           </ul>
+          <?php /* Refactor @if(Auth::check()): */?>
+          <p class=" navbar-text navbar-right ">
+          @if($user)
+                <a>Hello {{ $user->name }}</a>
+          @else
+
+                <a href="/login">Login</a>
+          @endif
+          </p>
         </div><!--/.nav-collapse -->
     </nav>
 
@@ -31,6 +43,8 @@
     </div>
 </body>
 <script src="/js/libs.js"></script>
-@include('flash')
 
+@yield('scripts.footer')
+<?php #keep at the bottom after all js is loaded ?>
+@include('flash')
 </html>

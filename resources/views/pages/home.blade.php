@@ -7,4 +7,14 @@
         </p>
         <a href="/flyers/create" class="btn btn-primary">Create a Flyer</a>
     </div>
+    <div class="content">
+        <h3>List of flyers</h3>
+        <ul>
+        @foreach($flyers as $flyer)
+            <li><a href="/{{$flyer->zip}}/{{str_replace(' ', '-', $flyer->street)}}">{{$flyer->street}}</a></li>
+        @endforeach
+        </ul>
+    </div>
+
 @stop
+

@@ -10,9 +10,20 @@
 | and give it the controller to call when that URI is requested.
 |
 */
+Route::get('/', 'PagesController@home');
 
-Route::get('/', function () {
-    return view('pages.home');
-});
+
+
+// Authentication routes...
+Route::get('login', 'Auth\AuthController@getLogin');
+Route::post('login', 'Auth\AuthController@postLogin');
+Route::get('logout', 'Auth\AuthController@getLogout');
+
+// Registration routes...
+Route::get('register', 'Auth\AuthController@getRegister');
+Route::post('register', 'Auth\AuthController@postRegister');
+
 
 Route::resource('flyers', 'FlyersController');
+Route::resource('{zip}/{street}', 'FlyersController@show');
+Route::resource('{zip}/{street}/photos', 'FlyersController@addPhoto');
