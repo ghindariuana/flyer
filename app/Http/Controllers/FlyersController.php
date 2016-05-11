@@ -56,6 +56,8 @@ class FlyersController extends Controller
     public function store(Requests\FlyerRequest $request)
     {
         // after validation
+        $request->input('user_id',$this->user->id);
+        #return (print_r(['<pre>', $request]));
         \App\Flyer::create($request->all());
 
         //session()->flash('flash message', 'flyer created succcsfully created');

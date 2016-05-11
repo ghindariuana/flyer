@@ -10,7 +10,7 @@
 
 </head>
 <body>
-    <nav class="navbar navbar-default navbar-fixed-top col-xs-11">
+    <nav class="navbar navbar-default navbar-fixed-top">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
             <span class="sr-only">Toggle navigation</span>
@@ -29,9 +29,11 @@
           <p class=" navbar-text navbar-right ">
           @if($user)
                 <a>Hello {{ $user->name }}</a>
+                 <a class="btn btn-info" href="/logout">Logout</a>
           @else
 
                 <a href="/login">Login</a>
+                 <a  class="btn btn-success" href="/register">Register</a>
           @endif
           </p>
         </div><!--/.nav-collapse -->

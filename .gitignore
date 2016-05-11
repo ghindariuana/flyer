@@ -6,3 +6,5 @@ Homestead.json
 .env
 *.log
 .phpintel/**
+public/galery/**
+public/galery/photos/**

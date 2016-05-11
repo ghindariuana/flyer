@@ -11,7 +11,7 @@ class Flyer extends Model
      * Filable forms for a flyer
      */
     protected $fillable = [
-        'street', 'city', 'country', 'zip', 'price', 'description'
+        'street', 'city', 'country', 'zip', 'price', 'description', 'user_id'
     ];
 
 
