@@ -33,7 +33,7 @@
           @else
 
                 <a href="/login">Login</a>
-                 <a  class="btn btn-success" href="/register">Register</a>
+                 <a  class="btn btn-success" href="{{url('/login')}}">Register</a>
           @endif
           </p>
         </div><!--/.nav-collapse -->

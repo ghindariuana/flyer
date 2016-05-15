@@ -12,3 +12,13 @@ function flash($title = Null, $message = Null)
 
     return $flash->info($title, $message);
 }
+
+/**
+ * The web path to a given flyer
+ *@param App\Flyer $flyer
+ *@return string
+ */
+function flyer_path(App\Flyer $flyer)
+{
+    return $flyer->zip . '/' . str_replace(' ', '-', $flyer->street);
+}

@@ -6,7 +6,8 @@ use Auth;
 use App\Flyer;
 use App\Photo;
 use Illuminate\Http\Request;
-use Illuminate\Http\UploadedFile;
+use App\Http\Requests\AddPhotoRequest;
+# refactoreduse Illuminate\Http\UploadedFile;
 use App\Http\Controllers\Traits\AuthorizesUsers;
 
 use App\Http\Requests;
@@ -56,15 +57,21 @@ class FlyersController extends Controller
     public function store(Requests\FlyerRequest $request)
     {
         // after validation
-        $request->input('user_id',$this->user->id);
         #return (print_r(['<pre>', $request]));
+        /**refactor add userid
         \App\Flyer::create($request->all());
-
+        refactor*/
+        $flyer = $this->user->publish(
+            new Flyer($request->all())
+        );
+        #die(print_r(['<pre>', $flyer->street, $flyer->zip]));
         //session()->flash('flash message', 'flyer created succcsfully created');
         flash('Bravo', 'Flyer successfuly created');
         // flash messge
-        return redirect()->back();
-
+        //return redirect()->back();
+        //return redirect($flyer->zip . '/' . str_replace(' ', '-', $flyer->street));
+        // use helper
+        return redirect(flyer_path($flyer));
 
     }
 
@@ -92,7 +99,7 @@ class FlyersController extends Controller
      * @param  string $zip postal code
      * @param  string $street the street
      * @return \Illuminate\Http\Response
-     */
+     /** Refactored
     public function addPhoto($zip, $street, Request $request)
     {
 
@@ -105,7 +112,7 @@ class FlyersController extends Controller
         $name = time() . $file->getClientOriginalName();
         #dd([$name, $file]);
         $file->move('flyers/photos', $name);
-        Refactor*/
+        Refactor* /
         //$file = Photo::fromForm($request->file('photo')) ;
 
         $file = $this->makePhoto($request->file('photo'));
@@ -118,8 +125,8 @@ class FlyersController extends Controller
         $flyer->photos()->create(['path'=>"/flyers/photos/$name"]);
         Refactor*/
         #$flyer = Flyer::locatedAt($zip, $street);
-        /**Refactor if($flyer->user_id !== \Auth::id())  # if is not the owner of the flyer*/
-        /** refactor if(!$flyer->ownedBy($this->user))  # refactored placed in \Controller\Auth::user())) */
+        /**Refactor if($flyer->user_id !== \Auth::id())  # if is not the owner of the flyer* /
+        /** refactor if(!$flyer->ownedBy($this->user))  # refactored placed in \Controller\Auth::user())) * /
         if( ! $this->userCreatedFlyer($request))
         {
             #print_r([$flyer->user_id, \auth::id()]);
@@ -129,16 +136,20 @@ class FlyersController extends Controller
 
         return 'Done';
 
-    }
+    } Refactored  moved to Photo controller
+    public function addPhoto($zip, $street, AddPhotoRequest $request)
+    {
+        $photo = Photo::fromFile($request->file('photo'));## ->upload(); refactored to Photo::boot method
+        Flyer::locatedAt($zip, $street)->addPhoto($photo);
+    }*/
 
-
-
+    /** Refactored moved to
     public function makePhoto(UploadedFile $file)
     {
         #return Photo::fromForm($file)->store($file);
         return (new Photo)->named($file->getClientOriginalName())
             ->move($file);
-    }
+    }Refactored*/
 
 
     /**

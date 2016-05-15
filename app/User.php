@@ -24,6 +24,18 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+
+    public function flyer()
+    {
+        return $this->hasMany(Flyer::class);
+    }
+
+    public function publish(Flyer $flyer)
+    {
+        $this->flyer()->save($flyer);
+        return $flyer;
+    }
+
     public function owns($relation)
     {
 
